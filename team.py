@@ -9,10 +9,9 @@ class Team:
 
         self.players = players
         self.captain = self.select_captain(players)
-        self.batting_order = self.select_order(players, 'batting')
-        self.bowling_order = self.select_order(players, 'bowling')
-        self.is_batting = False
-        self.is_bowling = False
+        self.batting_order = self.select_order(players)
+
+        self.score = 0
 
     def select_captain(self, players: Player) -> Player:
         '''
@@ -20,11 +19,11 @@ class Team:
         '''
         return max(players, key=lambda x: x.stats['experience'])
 
-    def select_order(self, players: List[Player], action: str) -> List[Player]:
+    def select_batting_order(self, players: List[Player]) -> List[Player]:
         '''
             Selects the order of players based on best stat first.
         '''
-        return sorted(players, key=lambda x: x.stats[action], reverse=True)
+        return sorted(players, key=lambda x: x.stats['batting'], reverse=True)
 
     def won_toss(self) -> str:
         '''

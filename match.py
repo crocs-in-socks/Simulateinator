@@ -11,6 +11,12 @@ class Match:
         self.team_B = teams[1]
         self.overs = overs
 
+        self.is_batting = None
+        self.is_bowling = None
+
+        self.bowler = None
+        self.on_strike = None
+
     def toss(self) -> None:
         '''
             Toss. Team that wins chooses to bat/bowl.
@@ -22,48 +28,38 @@ class Match:
             choice = self.team_A.won_toss()
 
             if choice == 'batting':
-                self.team_A.is_batting = True
-                self.team_B.is_bowling = True
+                self.is_batting = self.team_A
+                self.is_bowling = self.team_B
 
             elif choice == 'bowling':
-                self.team_A.is_bowling = True
-                self.team_B.is_batting = True
+                self.is_bowling = self.team_A
+                self.is_batting = self.team_B
 
         else:
 
+            choice = self.team_B.won_toss()
+
             if choice == 'batting':
-                self.team_B.is_batting = True
-                self.team_A.is_bowling = True
+                self.is_batting = self.team_B
+                self.is_bowling = self.team_A
 
             elif choice == 'bowling':
-                self.team_B.is_bowling = True
-                self.team_A.is_batting = True
+                self.is_bowling = self.team_B
+                self.is_batting = self.team_A
 
     def over(self) -> None:
         '''
             Play an over in the innings.
         '''
+        for ball in range(6):
+            pass
 
     def innings(self) -> None:
         '''
             Play innings.
         '''
-        for over in range(self.overs):
-            self.over
 
-    def play(self) -> None:
-        '''
-            Start the match.
-        '''
-        self.toss()
-        self.innings()
-
-        self.team_A.is_batting = not self.team_A.is_batting
-        self.team_A.is_bowling = not self.team_A.is_bowling
-        self.team_B.is_batting = not self.team_B.is_batting
-        self.team_B.is_bowling = not self.team_B.is_bowling
-
-        self.innings()
+        pass
 
 
 if __name__ == '__main__':
@@ -87,7 +83,7 @@ if __name__ == '__main__':
     })
 
     player3 = Player({
-        'name': 'Good Music',
+        'name': 'Brain Cells',
         'bowling': 0.7,
         'batting': 0.43,
         'fielding': 0.89,

@@ -24,7 +24,8 @@ class Player:
 
     def does_action(self, action: str) -> float:
         '''
-            Calculates the score of a player's play instance based on the given action.
+            Calculates the score of a player's play instance based on the given
+            action.
         '''
         # TODO : Choose a function to calculate score
         score = self.stats[action]
